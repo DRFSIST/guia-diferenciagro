@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diferenciagro · Guia de Cobrança</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#081911;
+    --bg-1:#0e2818;
+    --bg-2:#153a24;
+    --bg-3:#1c4a2e;
+    --line: rgba(255,255,255,0.09);
+    --line-strong: rgba(255,255,255,0.16);
+    --green: #5fbf46;
+    --green-light: #9be07f;
+    --green-dim: #2f6b2c;
+    --gold: #e0a83e;
+    --red: #e0574a;
+    --text-0: #f5f8f3;
+    --text-1: #c7d6c9;
+    --text-2: #8ca391;
+    --radius: 18px;
+    --shadow: 0 20px 50px -20px rgba(0,0,0,0.6);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(circle at 20% -10%, #12331f 0%, var(--bg-0) 45%) fixed, var(--bg-0);
+    color: var(--text-0);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height:100vh;
+  }
+  h1,h2,h3,h4, .display{ font-family:'Sora', sans-serif; }
+
+  /* subtle background texture: leaf veins */
+  .veins{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.35;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.05) 1px, transparent 1px),
+      radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.04) 1px, transparent 1px),
+      radial-gradient(1px 1px at 40% 85%, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 400px 400px;
+  }
+
+  .wrap{ position:relative; z-index:1; max-width: 1080px; margin:0 auto; padding: 0 20px 80px; }
+
+  /* HEADER */
+  header.top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 22px 0 18px; gap:16px; flex-wrap:wrap;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .logo-mark{ width:44px; height:44px; flex:none; }
+  .brand-name{ font-weight:800; letter-spacing:0.5px; font-size:1.15rem; }
+  .brand-name .accent{ color: var(--green-light); }
+  .brand-sub{ font-size:0.72rem; color:var(--text-2); letter-spacing:1.5px; text-transform:uppercase; margin-top:1px;}
+
+  .progress-pill{
+    font-size:0.78rem; color:var(--text-1); background:var(--bg-2);
+    border:1px solid var(--line); padding:8px 14px; border-radius:100px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .progress-pill b{ color: var(--green-light); }
+
+  /* HERO */
+  .hero{
+    background: linear-gradient(160deg, var(--bg-2) 0%, var(--bg-1) 60%, var(--bg-0) 100%);
+    border:1px solid var(--line);
+    border-radius: 24px;
+    padding: 40px 32px;
+    margin: 10px 0 28px;
+    position:relative;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; right:-60px; top:-60px; width:280px; height:280px;
+    background: radial-gradient(circle, rgba(95,191,70,0.18), transparent 70%);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.72rem; letter-spacing:1.6px; text-transform:uppercase;
+    color: var(--green-light); font-weight:700; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:"●"; color:var(--green); font-size:0.6rem; }
+  .hero h1{ font-size: clamp(1.6rem, 4vw, 2.35rem); line-height:1.15; margin:0 0 12px; max-width: 640px;}
+  .hero p.lead{ color:var(--text-1); max-width:560px; font-size:1rem; line-height:1.6; margin:0 0 22px;}
+
+  .pillars{ display:flex; gap:28px; flex-wrap:wrap; margin-top: 8px;}
+  .pillar{ display:flex; align-items:center; gap:10px; }
+  .pillar .ic{
+    width:38px; height:38px; border-radius:50%; border:1.5px solid var(--green-dim);
+    display:flex; align-items:center; justify-content:center; color:var(--green-light); font-size:1rem;
+    background: rgba(95,191,70,0.08);
+  }
+  .pillar span{ font-size:0.82rem; font-weight:600; color:var(--text-1); letter-spacing:0.3px;}
+
+  .golden-rule{
+    margin-top: 26px; background: rgba(224,168,62,0.08); border:1px solid rgba(224,168,62,0.35);
+    border-radius: 14px; padding:16px 18px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .golden-rule .ic{ font-size:1.2rem; flex:none; margin-top:1px;}
+  .golden-rule p{ margin:0; font-size:0.9rem; color:var(--text-0); line-height:1.55;}
+  .golden-rule b{ color: var(--gold); }
+
+  /* TABS */
+  nav.tabs{
+    position: sticky; top:0; z-index:20;
+    display:flex; gap:6px; overflow-x:auto;
+    background: rgba(8,25,17,0.88); backdrop-filter: blur(10px);
+    border:1px solid var(--line); border-radius: 14px;
+    padding:6px; margin-bottom: 26px;
+    scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{ display:none; }
+  .tab-btn{
+    flex:none; appearance:none; border:none; cursor:pointer;
+    background:transparent; color:var(--text-2);
+    font-family:'Inter',sans-serif; font-weight:600; font-size:0.84rem;
+    padding:10px 16px; border-radius:10px; transition: all .18s ease;
+    white-space:nowrap;
+  }
+  .tab-btn:hover{ color:var(--text-0); }
+  .tab-btn.active{ background: var(--green); color:#07240f; }
+
+  section.panel{ display:none; animation: fadeIn .35s ease; }
+  section.panel.active{ display:block; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  .panel-head{ margin-bottom: 20px; }
+  .panel-head h2{ font-size:1.3rem; margin:0 0 6px; }
+  .panel-head p{ color:var(--text-2); font-size:0.9rem; margin:0; max-width:620px; line-height:1.5;}
+
+  /* STEP TIMELINE (etapas) */
+  .timeline{ display:flex; flex-direction:column; gap:0; }
+  .step-card{
+    display:flex; gap:16px; cursor:pointer; position:relative; padding: 4px 0 26px 0;
+    background:none; border:none; text-align:left; width:100%; color:inherit; font-family:inherit;
+  }
+  .step-card:last-child{ padding-bottom:4px; }
+  .step-rail{ display:flex; flex-direction:column; align-items:center; flex:none; }
+  .step-num{
+    width:40px; height:40px; border-radius:50%; background:var(--bg-2);
+    border:1.5px solid var(--green-dim); display:flex; align-items:center; justify-content:center;
+    font-weight:800; color:var(--green-light); font-size:1rem; flex:none;
+    transition: all .2s ease;
+  }
+  .step-card:hover .step-num{ background:var(--green); color:#07240f; border-color:var(--green); }
+  .step-line{ width:2px; flex:1; background: linear-gradient(var(--green-dim), var(--line)); margin:4px 0; min-height:14px;}
+  .step-card:last-child .step-line{ display:none; }
+  .step-body{
+    flex:1; background:var(--bg-1); border:1px solid var(--line); border-radius:16px;
+    padding:16px 18px; transition: all .18s ease;
+  }
+  .step-card:hover .step-body{ border-color:var(--green-dim); background:var(--bg-2); transform: translateX(2px); }
+  .step-title{ font-weight:700; font-size:0.98rem; margin:0 0 4px; display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .step-title .arrow{ color:var(--text-2); font-size:1rem; transition: transform .18s ease;}
+  .step-card:hover .arrow{ transform: translateX(3px); color:var(--green-light); }
+  .step-desc{ margin:0; color:var(--text-1); font-size:0.85rem; line-height:1.5; }
+
+  /* GRID CARDS (situações) */
+  .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
+  .grid-card{
+    background:var(--bg-1); border:1px solid var(--line); border-radius:16px;
+    padding:18px; cursor:pointer; text-align:left; color:inherit; font-family:inherit;
+    display:flex; flex-direction:column; gap:10px; transition: all .18s ease;
+  }
+  .grid-card:hover{ border-color:var(--green-dim); background:var(--bg-2); transform: translateY(-2px); box-shadow: var(--shadow);}
+  .grid-card .ic{
+    width:38px; height:38px; border-radius:10px; background: rgba(95,191,70,0.1);
+    border:1px solid var(--green-dim); display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+  }
+  .grid-card h4{ margin:0; font-size:0.94rem; line-height:1.35; }
+  .grid-card p.hint{ margin:0; color:var(--text-2); font-size:0.78rem; line-height:1.4;}
+  .grid-card .tag{
+    align-self:flex-start; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; text-transform:uppercase;
+    padding:3px 9px; border-radius:100px; margin-top:auto;
+  }
+  .tag.common{ background:rgba(95,191,70,0.12); color:var(--green-light); }
+  .tag.extra{ background:rgba(224,168,62,0.12); color:var(--gold); }
+  .tag.risk{ background:rgba(224,87,74,0.12); color:#f18d83; }
+
+  /* Quando ligar - timeline horizontal cards */
+  .moments{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .moment-card{
+    background:var(--bg-1); border:1px solid var(--line); border-radius:16px; padding:18px;
+    cursor:pointer; color:inherit; text-align:left; font-family:inherit; transition:all .18s ease;
+    position:relative; overflow:hidden;
+  }
+  .moment-card:hover{ border-color:var(--green-dim); background:var(--bg-2); transform:translateY(-2px);}
+  .moment-badge{ font-size:0.7rem; font-weight:800; letter-spacing:0.6px; text-transform:uppercase; color:var(--green-light); margin-bottom:8px; display:block;}
+  .moment-card h4{ margin:0 0 6px; font-size:1.02rem; }
+  .moment-card p{ margin:0; color:var(--text-2); font-size:0.8rem; line-height:1.45;}
+
+  /* Nunca faça */
+  .never-list{ display:flex; flex-direction:column; gap:10px; }
+  .never-item{
+    display:flex; align-items:flex-start; gap:14px; background:var(--bg-1);
+    border:1px solid var(--line); border-left:3px solid var(--red); border-radius:12px;
+    padding:14px 16px; cursor:pointer; text-align:left; color:inherit; font-family:inherit; width:100%;
+    transition: all .18s ease;
+  }
+  .never-item:hover{ background:var(--bg-2); }
+  .never-item .x{ color:var(--red); font-size:1.1rem; flex:none; margin-top:1px;}
+  .never-item p{ margin:0; font-size:0.88rem; color:var(--text-0); line-height:1.5;}
+  .never-item .arrow{ margin-left:auto; color:var(--text-2); flex:none;}
+
+  /* Checklist */
+  .checklist-wrap{ background:var(--bg-1); border:1px solid var(--line); border-radius:18px; padding:22px; }
+  .cl-progress-track{ height:8px; background:var(--bg-3); border-radius:100px; overflow:hidden; margin-bottom:20px;}
+  .cl-progress-fill{ height:100%; width:0%; background: linear-gradient(90deg, var(--green-dim), var(--green)); transition: width .3s ease; }
+  .cl-item{ display:flex; align-items:flex-start; gap:12px; padding:10px 4px; border-bottom:1px solid var(--line); cursor:pointer; user-select:none;}
+  .cl-item:last-child{ border-bottom:none; }
+  .cl-box{
+    width:22px; height:22px; border-radius:6px; border:1.5px solid var(--line-strong); flex:none;
+    display:flex; align-items:center; justify-content:center; margin-top:1px; transition: all .15s ease;
+  }
+  .cl-item.checked .cl-box{ background:var(--green); border-color:var(--green); }
+  .cl-box svg{ opacity:0; transition:opacity .15s ease; width:13px; height:13px;}
+  .cl-item.checked .cl-box svg{ opacity:1; }
+  .cl-text{ font-size:0.88rem; line-height:1.5; color:var(--text-1); transition: color .15s ease;}
+  .cl-item.checked .cl-text{ color:var(--text-2); text-decoration: line-through; text-decoration-color: var(--green-dim); }
+  .cl-done-msg{
+    margin-top:18px; padding:14px 16px; border-radius:12px; background: rgba(95,191,70,0.1);
+    border:1px solid var(--green-dim); font-size:0.86rem; line-height:1.55; display:none;
+  }
+  .cl-done-msg.show{ display:block; }
+  .cl-done-msg b{ color:var(--green-light); }
+
+  /* MODAL */
+  .overlay{
+    position:fixed; inset:0; background: rgba(4,12,7,0.72); backdrop-filter: blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:20px; z-index:100;
+    opacity:0; pointer-events:none; transition: opacity .22s ease;
+  }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .modal{
+    width:100%; max-width: 480px; background: var(--bg-1);
+    border:1px solid var(--line-strong); border-radius:22px; overflow:hidden;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);
+    transform: translateY(16px) scale(0.98); transition: transform .25s ease;
+    max-height: 88vh; display:flex; flex-direction:column;
+  }
+  .overlay.show .modal{ transform: translateY(0) scale(1); }
+  .modal-head{
+    background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+    padding:16px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--line);
+    flex:none;
+  }
+  .modal-head .logo-mark{ width:32px; height:32px; }
+  .modal-head .who{ flex:1; min-width:0; }
+  .modal-head .who .name{ font-weight:700; font-size:0.86rem; display:flex; align-items:center; gap:5px; }
+  .modal-head .who .role{ font-size:0.7rem; color:var(--text-2); }
+  .modal-close{
+    appearance:none; border:none; background: rgba(255,255,255,0.06); color:var(--text-1);
+    width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:1rem; flex:none;
+    display:flex; align-items:center; justify-content:center; transition: background .15s ease;
+  }
+  .modal-close:hover{ background: rgba(255,255,255,0.14); color:var(--text-0); }
+  .modal-body{ padding:20px 20px 22px; overflow-y:auto; }
+  .modal-eyebrow{ font-size:0.7rem; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--green-light); margin-bottom:10px;}
+  .modal-title{ font-size:1.08rem; margin:0 0 16px; line-height:1.35; }
+
+  .speech-box{
+    background: rgba(95,191,70,0.08); border:1px solid rgba(95,191,70,0.3);
+    border-radius:14px; padding:14px 16px; margin-bottom:14px;
+  }
+  .speech-box .lbl{ font-size:0.7rem; font-weight:800; letter-spacing:0.6px; text-transform:uppercase; color:var(--green-light); display:flex; align-items:center; gap:6px; margin-bottom:8px;}
+  .speech-box p{ margin:0; font-size:0.95rem; line-height:1.6; font-style:italic; color:var(--text-0); }
+
+  .tip-box{
+    background: rgba(224,168,62,0.08); border:1px solid rgba(224,168,62,0.3);
+    border-radius:14px; padding:14px 16px; margin-bottom:14px;
+  }
+  .tip-box .lbl{ font-size:0.7rem; font-weight:800; letter-spacing:0.6px; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:6px; margin-bottom:8px;}
+  .tip-box p{ margin:0; font-size:0.86rem; line-height:1.55; color:var(--text-1); }
+
+  .warn-box{
+    background: rgba(224,87,74,0.08); border:1px solid rgba(224,87,74,0.3);
+    border-radius:14px; padding:14px 16px; margin-bottom:14px;
+  }
+  .warn-box .lbl{ font-size:0.7rem; font-weight:800; letter-spacing:0.6px; text-transform:uppercase; color:#f18d83; display:flex; align-items:center; gap:6px; margin-bottom:8px;}
+  .warn-box p{ margin:0; font-size:0.86rem; line-height:1.55; color:var(--text-1); }
+
+  .modal-nav{ display:flex; justify-content:space-between; gap:10px; margin-top:16px; }
+  .modal-nav button{
+    flex:1; appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--bg-2);
+    color:var(--text-1); font-family:'Inter',sans-serif; font-weight:600; font-size:0.8rem;
+    padding:10px 12px; border-radius:10px; transition:all .15s ease;
+  }
+  .modal-nav button:hover:not(:disabled){ background:var(--bg-3); color:var(--text-0); }
+  .modal-nav button:disabled{ opacity:0.35; cursor:not-allowed; }
+
+  footer{ text-align:center; color:var(--text-2); font-size:0.76rem; padding-top:30px; line-height:1.6; }
+  footer .logo-mark{ width:22px; height:22px; vertical-align:middle; margin-right:6px;}
+  .reset-link{
+    background:none; border:none; color:var(--text-2); font-size:0.72rem; cursor:pointer;
+    text-decoration:underline; font-family:'Inter',sans-serif; margin-top:10px; padding:4px;
+  }
+  .reset-link:hover{ color:var(--text-1); }
+
+  /* EDIÇÃO INLINE ("O que dizer") */
+  .lbl-row{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; }
+  .lbl-row .lbl{ margin-bottom:0; }
+  .edit-btn{
+    appearance:none; border:1px solid var(--green-dim); background:rgba(95,191,70,0.1);
+    color:var(--green-light); font-family:'Inter',sans-serif; font-weight:700; font-size:0.68rem;
+    letter-spacing:0.3px; padding:5px 10px; border-radius:100px; cursor:pointer; flex:none;
+    transition: all .15s ease; white-space:nowrap;
+  }
+  .edit-btn:hover{ background:var(--green); color:#07240f; }
+  .edited-flag{
+    font-size:0.62rem; font-weight:700; color:var(--gold); background:rgba(224,168,62,0.12);
+    border-radius:100px; padding:2px 8px; margin-left:6px; text-transform:uppercase; letter-spacing:0.3px;
+  }
+  .edit-area{
+    width:100%; min-height:88px; resize:vertical; background:var(--bg-0); color:var(--text-0);
+    border:1.5px solid var(--green-dim); border-radius:10px; padding:10px 12px;
+    font-family:'Inter',sans-serif; font-size:0.92rem; line-height:1.55; margin-bottom:10px;
+  }
+  .edit-area:focus{ outline:none; border-color:var(--green); }
+  .edit-actions{ display:flex; gap:8px; margin-bottom:2px; }
+  .edit-save, .edit-cancel{
+    appearance:none; border:none; cursor:pointer; font-family:'Inter',sans-serif; font-weight:700;
+    font-size:0.8rem; padding:9px 14px; border-radius:10px; transition: all .15s ease;
+  }
+  .edit-save{ background:var(--green); color:#07240f; }
+  .edit-save:hover{ background:var(--green-light); }
+  .edit-cancel{ background:var(--bg-2); color:var(--text-1); border:1px solid var(--line); }
+  .edit-cancel:hover{ background:var(--bg-3); color:var(--text-0); }
+
+  .progress-pill{ appearance:none; font-family:'Inter',sans-serif; cursor:pointer; }
+  .progress-pill:hover{ border-color:var(--green-dim); background:var(--bg-3); }
+
+  /* CHECKLIST FLUTUANTE — fica ACIMA do modal (overlay z-index:100) de propósito,
+     para dar pra marcar o checklist mesmo com uma etapa/situação aberta */
+  .checklist-fab{
+    position:fixed; z-index:150; bottom:22px; right:20px;
+    width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
+    background: linear-gradient(160deg, var(--green), var(--green-dim));
+    color:#07240f; font-size:1.4rem; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 12px 30px -8px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    transition: transform .18s ease, bottom .2s ease;
+  }
+  .checklist-fab:hover{ transform:scale(1.07); }
+  .checklist-fab .fab-badge{
+    position:absolute; top:-4px; right:-4px; background:var(--gold); color:#241a05;
+    font-size:0.6rem; font-weight:800; padding:2px 6px; border-radius:100px; border:2px solid var(--bg-0);
+  }
+  /* Com um modal (etapa/situação) aberto, sobe um pouco para não tampar os botões de navegação do modal */
+  body.modal-open .checklist-fab{ bottom:100px; }
+  body.modal-open .checklist-drawer{ bottom:168px; }
+
+  .checklist-drawer{
+    position:fixed; z-index:149; bottom:90px; right:20px;
+    width: min(340px, calc(100vw - 40px));
+    max-height:56vh; overflow-y:auto;
+    background: var(--bg-1); border:1px solid var(--line-strong); border-radius:18px;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,0.8);
+    transform: translateY(12px) scale(0.97); opacity:0; pointer-events:none;
+    transition: opacity .2s ease, transform .2s ease, bottom .2s ease;
+  }
+  .checklist-drawer.open{ transform:none; opacity:1; pointer-events:auto; }
+  .drawer-head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    padding:16px 16px 12px; border-bottom:1px solid var(--line);
+    background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+    border-radius:18px 18px 0 0; position:sticky; top:0;
+  }
+  .drawer-title{ font-weight:700; font-size:0.92rem; }
+  .drawer-sub{ font-size:0.74rem; color:var(--text-2); margin-top:3px; }
+  .drawer-head-actions{ display:flex; align-items:center; gap:8px; flex:none; }
+  .drawer-reset{
+    appearance:none; border:1px solid var(--line-strong); background:rgba(255,255,255,0.05);
+    color:var(--text-1); font-family:'Inter',sans-serif; font-weight:700; font-size:0.68rem;
+    padding:6px 10px; border-radius:100px; cursor:pointer; white-space:nowrap; transition: all .15s ease;
+  }
+  .drawer-reset:hover{ background:rgba(255,255,255,0.12); color:var(--text-0); }
+  .drawer-close{
+    appearance:none; border:none; background:rgba(255,255,255,0.06); color:var(--text-1);
+    width:26px; height:26px; border-radius:50%; cursor:pointer; flex:none; font-size:0.85rem;
+  }
+  .drawer-close:hover{ background:rgba(255,255,255,0.16); color:var(--text-0); }
+  .drawer-body{ padding:16px; }
+  .drawer-body .checklist-wrap{ background:none; border:none; padding:0; }
+  .cl-main{ flex:1; min-width:0; }
+  .cl-num{
+    display:inline-flex; align-items:center; justify-content:center; width:17px; height:17px;
+    border-radius:50%; background:var(--bg-3); color:var(--green-light); font-size:0.65rem; font-weight:800;
+    margin-right:3px; vertical-align:middle;
+  }
+  .cl-item.checked .cl-num{ background:var(--green-dim); color:var(--text-0); }
+  .cl-speech-box{ margin:6px 0 0 !important; padding:9px 11px !important; }
+  .cl-speech-box .speech-text{ font-size:0.8rem !important; }
+  .cl-item.checked .cl-speech-box{ opacity:0.55; }
+  .cl-link{
+    appearance:none; border:none; background:none; color:var(--green-light); font-family:'Inter',sans-serif;
+    font-weight:700; font-size:0.7rem; cursor:pointer; padding:6px 0 0; text-decoration:underline;
+  }
+  .cl-link:hover{ color:var(--green); }
+
+  /* DESKTOP: ocupar apenas um terço da largura da tela, altura total */
+  @media (min-width: 900px){
+    html, body{ height:100%; }
+    body{
+      display:flex; justify-content:center;
+      background: #04100a;
+    }
+    body::before{
+      content:""; position:fixed; inset:0;
+      background: radial-gradient(circle at 50% 0%, rgba(95,191,70,0.06), transparent 60%);
+      pointer-events:none;
+    }
+    .app-frame{
+      width: 33.333vw;
+      min-width: 360px;
+      min-height: 100vh;
+      background: var(--bg-0);
+      box-shadow: 0 0 0 1px var(--line), 0 30px 90px -20px rgba(0,0,0,0.75);
+      position:relative;
+    }
+    .wrap{ max-width:none; padding-left:20px; padding-right:20px; }
+    .checklist-fab{ right: calc((100vw - 33.333vw)/2 + 20px); }
+    .checklist-drawer{ right: calc((100vw - 33.333vw)/2 + 20px); }
+  }
+
+  @media (max-width: 560px){
+    .wrap{ padding: 0 14px 60px; }
+    .hero{ padding: 28px 20px; }
+    .pillars{ gap:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="veins"></div>
+<div class="app-frame">
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="48" fill="#153a24" stroke="#5fbf46" stroke-width="2"/>
+        <path d="M35 70 L35 30 M35 45 L52 28" stroke="#f5f8f3" stroke-width="5" stroke-linecap="round"/>
+        <path d="M45 70 C45 55 50 42 68 32 C68 48 62 62 45 70 Z" fill="#f5f8f3"/>
+      </svg>
+      <div>
+        <div class="brand-name">DIFERENCI<span class="accent">AGRO</span></div>
+        <div class="brand-sub">Guia de Cobrança</div>
+      </div>
+    </div>
+    <button class="progress-pill" id="headerProgress">📋 Checklist: <b id="clCount">0/8</b></button>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">Guia de bolso · para quem está começando</span>
+    <h1>Como conduzir uma ligação de cobrança com o produtor rural</h1>
+    <p class="lead">Um roteiro vivo: clique em cada etapa ou situação para ver exatamente o que dizer — e a dica por trás da fala. Pensado para caminhar ao lado do produtor, mesmo numa conversa difícil.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="ic">🤝</div><span>Proximidade</span></div>
+      <div class="pillar"><div class="ic">🛡️</div><span>Confiança</span></div>
+      <div class="pillar"><div class="ic">📈</div><span>Resultados</span></div>
+    </div>
+    <div class="golden-rule">
+      <div class="ic">📌</div>
+      <p><b>Se você só lembrar de uma coisa:</b> nunca prometa o que a empresa não pode cumprir. E nunca desligue sem repetir em voz alta o que ficou combinado.</p>
+    </div>
+  </section>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-panel="etapas">📞 Etapas da Ligação</button>
+    <button class="tab-btn" data-panel="situacoes">💬 Situações</button>
+    <button class="tab-btn" data-panel="quando">🗓️ Quando Ligar</button>
+    <button class="tab-btn" data-panel="nunca">🚫 Nunca Faça</button>
+  </nav>
+
+  <!-- ETAPAS -->
+  <section class="panel active" id="panel-etapas">
+    <div class="panel-head">
+      <h2>Passo a passo da ligação</h2>
+      <p>Siga esta ordem. Pular um passo — principalmente o passo 2 — é o erro mais comum de quem está aprendendo.</p>
+    </div>
+    <div class="timeline" id="stepsTimeline"></div>
+  </section>
+
+  <!-- SITUAÇÕES -->
+  <section class="panel" id="panel-situacoes">
+    <div class="panel-head">
+      <h2>Situações comuns — o que dizer em cada uma</h2>
+      <p>Reconheça o padrão rápido e use a fala pronta como ponto de partida.</p>
+    </div>
+    <div class="grid" id="situationsGrid"></div>
+  </section>
+
+  <!-- QUANDO LIGAR -->
+  <section class="panel" id="panel-quando">
+    <div class="panel-head">
+      <h2>Quando ligar — o tom certo em cada momento</h2>
+      <p>Usar o tom errado no dia errado é um erro fácil de evitar. Confira antes de discar.</p>
+    </div>
+    <div class="moments" id="momentsGrid"></div>
+  </section>
+
+  <!-- NUNCA FAÇA -->
+  <section class="panel" id="panel-nunca">
+    <div class="panel-head">
+      <h2>Nunca faça</h2>
+      <p>Cinco limites que protegem o produtor, a empresa e você. Clique para entender o porquê.</p>
+    </div>
+    <div class="never-list" id="neverList"></div>
+  </section>
+
+  <footer>
+    <svg class="logo-mark" viewBox="0 0 100 100" fill="none" style="display:inline-block;">
+      <circle cx="50" cy="50" r="48" fill="#153a24" stroke="#5fbf46" stroke-width="2"/>
+      <path d="M35 70 L35 30 M35 45 L52 28" stroke="#f5f8f3" stroke-width="5" stroke-linecap="round"/>
+      <path d="M45 70 C45 55 50 42 68 32 C68 48 62 62 45 70 Z" fill="#f5f8f3"/>
+    </svg>
+    Diferenciagro · Guia interno de cobrança — caminhar ao lado do produtor.
+    <div><button class="reset-link" id="resetEditsBtn">🔄 Restaurar todos os textos originais</button></div>
+  </footer>
+</div>
+</div>
+
+<!-- CHECKLIST FLUTUANTE -->
+<button class="checklist-fab" id="checklistFab" aria-label="Abrir checklist">
+  ✅<span class="fab-badge" id="fabBadge">0/8</span>
+</button>
+
+<div class="checklist-drawer" id="checklistDrawer">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-title">✅ Checklist da ligação</div>
+      <div class="drawer-sub">Marque em ordem, ao vivo, durante a conversa.</div>
+    </div>
+    <div class="drawer-head-actions">
+      <button class="drawer-reset" id="drawerReset" title="Começar checklist do zero para o próximo produtor">↺ Nova ligação</button>
+      <button class="drawer-close" id="drawerClose" aria-label="Fechar checklist">✕</button>
+    </div>
+  </div>
+  <div class="drawer-body">
+    <div class="cl-progress-track"><div class="cl-progress-fill" id="clFill"></div></div>
+    <div id="clItems"></div>
+    <div class="cl-done-msg" id="clDoneMsg">
+      <b>🎯 Ligação concluída!</b> Confira se a confirmação já foi enviada por WhatsApp. Quando for ligar para o próximo produtor, toque em "Nova ligação" para zerar o checklist.
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="48" fill="#153a24" stroke="#5fbf46" stroke-width="2"/>
+        <path d="M35 70 L35 30 M35 45 L52 28" stroke="#f5f8f3" stroke-width="5" stroke-linecap="round"/>
+        <path d="M45 70 C45 55 50 42 68 32 C68 48 62 62 45 70 Z" fill="#f5f8f3"/>
+      </svg>
+      <div class="who">
+        <div class="name">Diferenciagro <span style="color:#5fbf46;">✔</span></div>
+        <div class="role" id="modalRole">Guia de cobrança</div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const STEPS = [
+  {
+    title: "Abertura — cumprimente como pessoa, não como devedor",
+    desc: "Pergunte algo real sobre a lavoura antes de falar da dívida.",
+    speech: "Bom dia, seu [nome]! Aqui é o [seu nome], da Diferenciagro. Tudo bem por aí, como está a lavoura?",
+    tip: "Só pergunte sobre a lavoura se for genuíno — pesquise 30 segundos antes de ligar.",
+    speech2: "Estou ligando porque vi a nota de [produto], vencimento em [data], ainda em aberto. Consegue confirmar a situação pra mim?"
+  },
+  {
+    title: "Descubra o motivo antes de propor algo",
+    desc: "Entenda por que o pagamento atrasou antes de oferecer qualquer solução.",
+    speech: "Entendi. Isso está mais ligado à colheita ainda não ter saído, ou é outra situação?",
+    tip: "Quem pula esse passo costuma oferecer a solução errada — por exemplo, um prazo curto para quem só vai ter dinheiro depois da colheita."
+  },
+  {
+    title: "Ofereça algo antes de pedir o pagamento",
+    desc: "Mostre flexibilidade primeiro — isso muda o tom da conversa.",
+    speech: "Sei que esse período aperta o caixa de todo mundo. Consigo alinhar o vencimento com a época da sua venda — isso ajudaria?",
+    tip: "Oferecer algo, mesmo pequeno, antes de pedir compromisso transforma a ligação de cobrança em conversa de parceria."
+  },
+  {
+    title: "Proponha duas opções, nunca uma pergunta aberta",
+    desc: "Dê 2 opções fechadas — nunca pergunte \"quando você pode pagar?\".",
+    speech: "Consigo fechar de duas formas: à vista com 5% de desconto até [data], ou parcelado em [X] vezes alinhado com a sua safra. Qual funciona melhor?",
+    tip: "Evite perguntar \"quando você pode pagar?\" — isso dá margem para adiar sem limite."
+  },
+  {
+    title: "Se o cliente reagir mal, mantenha a calma",
+    desc: "Fale mais baixo e mais devagar se o tom do cliente subir.",
+    speech: "Eu entendo a dificuldade, seu [nome]. Meu papel aqui não é pressionar, é achar uma solução que caiba na sua realidade. Mas preciso que a gente feche um encaminhamento hoje.",
+    tip: "Se o cliente sobe o tom, baixe o seu e fale mais devagar. É a forma mais simples de esfriar a conversa."
+  },
+  {
+    title: "Feche repetindo o combinado em voz alta",
+    desc: "Repita valor, data e forma de pagamento antes de encerrar.",
+    speech: "Então ficou combinado: R$ [valor], vencimento em [data], via [forma de pagamento]. Posso confirmar isso com o senhor?",
+    tip: "Quem confirma em voz alta cumpre mais. Nunca desligue sem esse resumo."
+  },
+  {
+    title: "Confirme por escrito na hora",
+    desc: "Envie o combinado por WhatsApp ou e-mail assim que desligar.",
+    speech: "Perfeito, vou te mandar agora por WhatsApp confirmando tudo que combinamos.",
+    tip: "Faça isso assim que desligar, antes de passar para a próxima ligação."
+  },
+];
+
+const SITUATIONS = [
+  {
+    icon:"😅", tag:"common", tagLabel:"Do roteiro", title:"Cliente esqueceu",
+    hint:"Situação leve, sem resistência.",
+    speech:"Sem problema, acontece bastante nessa época. Consegue resolver hoje ou amanhã? Te mando os dados agora.",
+    tip:"É a situação mais simples — resolva rápido e não prolongue a ligação. Confirme por escrito assim mesmo."
+  },
+  {
+    icon:"🌾", tag:"common", tagLabel:"Do roteiro", title:"Sem caixa até a colheita",
+    hint:"Falta de dinheiro é sazonal, não é recusa.",
+    speech:"Perfeito, vamos alinhar o vencimento pra depois da sua venda. Me dá uma previsão de quando isso deve sair?",
+    tip:"Peça uma data aproximada real, não deixe em aberto — isso vira o novo compromisso a confirmar por escrito."
+  },
+  {
+    icon:"⚠️", tag:"risk", tagLabel:"Atenção", title:"Insatisfeito com o produto",
+    hint:"O cenário mais traiçoeiro do roteiro.",
+    speech:"Entendo, vou registrar e encaminhar. Mas pagamento e análise do produto seguem caminhos separados — vamos alinhar um prazo enquanto isso é resolvido.",
+    tip:"Seja empático, mas não tire o prazo de cima da mesa. Pagamento e reclamação são dois processos separados — não misture os dois."
+  },
+  {
+    icon:"😠", tag:"common", tagLabel:"Do roteiro", title:"Cliente agressivo",
+    hint:"Dê espaço sem perder o encaminhamento.",
+    speech:"Entendo que o senhor está incomodado. Te dou um tempo e retorno em [dia] — mas pensa numa data até lá, porque preciso fechar isso com o senhor.",
+    tip:"A raiva é da situação financeira, não de você. Não leve para o lado pessoal — e nunca desligue sem marcar um retorno."
+  },
+  {
+    icon:"🔁", tag:"common", tagLabel:"Do roteiro", title:"Já prometeu antes e não pagou",
+    hint:"Histórico de acordo quebrado.",
+    speech:"Da última vez ficou combinado pra [data] e não foi possível. O que aconteceu, e o que ajustamos pra funcionar dessa vez?",
+    tip:"Peça um ajuste concreto no novo acordo (forma de pagamento, valor de entrada) — repetir a mesma promessa raramente funciona duas vezes."
+  },
+  {
+    icon:"🔕", tag:"extra", tagLabel:"Situação adicional", title:"Cliente não atende ou não retorna",
+    hint:"Silêncio nas tentativas de contato.",
+    speech:"Oi seu [nome], é a [seu nome] da Diferenciagro. Tentei falar por telefone algumas vezes — pode me ligar quando puder, ou me dizer um horário melhor? É sobre a nota de [produto].",
+    tip:"Varie o canal (ligação, WhatsApp, recado com terceiro de confiança) e espace as tentativas ao longo do dia. Insistência em excesso no mesmo dia tende a afastar, não aproximar."
+  },
+  {
+    icon:"💸", tag:"extra", tagLabel:"Situação adicional", title:"Pede desconto maior do que a empresa pode dar",
+    hint:"Negociação além do limite autorizado.",
+    speech:"Entendo o pedido, mas esse percentual eu não consigo aprovar aqui. O que consigo oferecer é [desconto real] à vista, ou parcelar sem juros em [X] vezes — qual ajuda mais?",
+    tip:"Nunca prometa um desconto fora do que você sabe que a empresa cumpre. Redirecione para as opções reais em vez de dizer só \"não\"."
+  },
+  {
+    icon:"🤷", tag:"extra", tagLabel:"Situação adicional", title:"Promete pagar mas não confirma nada concreto",
+    hint:"Fala vaga: \"eu resolvo\", \"deixa comigo\".",
+    speech:"Show, fico tranquilo sabendo disso. Só pra eu registrar certinho: fica pra que dia exatamente, e de que forma — Pix, boleto ou transferência?",
+    tip:"Vaguidão é sinal de alerta. Sempre transforme uma promessa genérica em data e forma de pagamento específicas antes de encerrar."
+  },
+  {
+    icon:"👨‍🌾", tag:"extra", tagLabel:"Situação adicional", title:"Um terceiro atende no lugar do produtor",
+    hint:"Funcionário, filho ou cônjuge atende a ligação.",
+    speech:"Bom dia! Sou [seu nome], da Diferenciagro. Consigo falar com o seu [nome] ou prefere que eu ligue em outro horário? É sobre uma nota em aberto.",
+    tip:"Nunca detalhe valores ou o motivo da cobrança com terceiros. Pergunte apenas o melhor horário para falar direto com o produtor."
+  },
+  {
+    icon:"📊", tag:"extra", tagLabel:"Situação adicional", title:"Produtor com várias dívidas, priorizando outros pagamentos",
+    hint:"Você não é o único credor na fila.",
+    speech:"Entendo que tem várias contas nessa época. O que eu posso fazer é encaixar um valor menor agora e o restante depois da venda — assim isso sai da sua lista de pendências. Faz sentido?",
+    tip:"Facilitar um primeiro pagamento parcial, mesmo pequeno, costuma reabrir a prioridade do produtor para o seu acordo nas próximas parcelas."
+  },
+];
+
+const MOMENTS = [
+  { badge:"5 dias de atraso", title:"Tom leve", desc:"Identifiquei que ainda não caiu, pode verificar?", tip:"Trate como um lembrete gentil, não como cobrança. Muitos atrasos nesse estágio são só operacionais (banco, data de compensação)." },
+  { badge:"15 dias de atraso", title:"Ligação completa", desc:"Use os 7 passos da página de Etapas da Ligação.", tip:"Esse é o ponto em que vale seguir o roteiro completo: abertura, motivo, oferta, opções fechadas, calma, fechamento e confirmação por escrito." },
+  { badge:"30 dias de atraso", title:"Tom mais firme", desc:"Mencione consequências reais (juros, restrição de crédito), sem ameaçar.", tip:"Firmeza é diferente de ameaça. Diga os fatos com calma e sem elevar o tom — a informação já pesa por si só." },
+  { badge:"Depois do acordo", title:"Acompanhamento", desc:"1 confirmação por escrito + 1 lembrete no dia anterior à nova data.", tip:"O lembrete na véspera reduz drasticamente o reatraso — é o passo que a maioria esquece de fazer." },
+];
+
+const NEVER = [
+  { text:"Cobrar no trabalho de terceiros ou contar a dívida para outra pessoa além do devedor.", why:"Expor a dívida do produtor para terceiros quebra a confiança e pode configurar constrangimento — a informação é só entre você e o titular da nota." },
+  { text:"Ligar muito cedo, muito tarde, ou várias vezes no mesmo dia.", why:"Horários invasivos e insistência excessiva passam a mensagem errada e tendem a fechar a porta para a próxima conversa." },
+  { text:"Prometer prazo ou desconto que a empresa não pode cumprir.", why:"Uma promessa quebrada pela própria empresa destrói a credibilidade da cobrança — e da relação — de forma muito mais difícil de reconstruir do que um atraso." },
+  { text:"Levar a agressividade do cliente para o lado pessoal — a raiva é da situação financeira, não de você.", why:"Reagir no mesmo tom escala o conflito. Lembrar que a raiva é da dívida, não de você, ajuda a manter a calma e conduzir para uma solução." },
+  { text:"Fechar um acordo sem registrar por escrito.", why:"Um acordo só falado é fácil de esquecer ou reinterpretar depois. O registro por escrito protege as duas partes e é a base do próximo contato." },
+];
+
+const CHECKLIST = [
+  { icon:"👋", text:"Cumprimentei e me identifiquei", speech:"Bom dia, seu [nome]! Aqui é o [seu nome], da Diferenciagro. Como está a lavoura?", stepIndex:0 },
+  { icon:"🔍", text:"Expliquei o motivo e entendi o atraso", speech:"Vi a nota de [produto] em aberto — isso está mais ligado à colheita ainda não ter saído, ou é outra situação?", stepIndex:1 },
+  { icon:"🤝", text:"Chegamos a um acordo", speech:"Consigo fechar de duas formas: à vista com desconto até [data], ou parcelado em [X]x. Qual funciona melhor?", stepIndex:2 },
+  { icon:"📢", text:"Repeti o combinado em voz alta", speech:"Então ficou combinado: R$ [valor], vencimento em [data], via [forma de pagamento]. Posso confirmar?", stepIndex:5 },
+  { icon:"🙏", text:"Agradeci o produtor", speech:"Muito obrigado pelo tempo, seu [nome]. Conto com o senhor nessa data!", stepIndex:null },
+  { icon:"📲", text:"Enviei a confirmação por WhatsApp", speech:"Vou te mandar agora por WhatsApp confirmando tudo que combinamos.", stepIndex:6 },
+];
+
+/* ---------- EDIÇÃO ("O que dizer") COM PERSISTÊNCIA LOCAL ---------- */
+const EDITS_KEY = 'diferenciagro_edits_v1';
+let EDITS = {};
+try { EDITS = JSON.parse(localStorage.getItem(EDITS_KEY)) || {}; } catch(e){ EDITS = {}; }
+
+function escapeHTML(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+function getText(key, fallback){
+  const raw = (EDITS[key] !== undefined && EDITS[key] !== null) ? EDITS[key] : fallback;
+  return escapeHTML(raw);
+}
+function isEdited(key){ return EDITS[key] !== undefined && EDITS[key] !== null; }
+function persistEdits(){
+  try{ localStorage.setItem(EDITS_KEY, JSON.stringify(EDITS)); }catch(e){}
+}
+
+// Guarda como redesenhar o modal atualmente aberto (para salvar/cancelar edições)
+let currentModalRenderer = null;
+
+// Gera o HTML de um bloco "📞 O que dizer" com botão de editar
+function speechBoxHTML(key, label, fallbackText){
+  const text = getText(key, fallbackText);
+  return `
+    <div class="speech-box" data-key="${key}">
+      <div class="lbl-row">
+        <div class="lbl">📞 ${label}${isEdited(key) ? '<span class="edited-flag">editado</span>' : ''}</div>
+        <button class="edit-btn" onclick="startEditBox('${key}')">✏️ Editar</button>
+      </div>
+      <p class="speech-text">"${text}"</p>
+    </div>`;
+}
+
+function startEditBox(key){
+  const box = document.querySelector(`.speech-box[data-key="${CSS.escape(key)}"]`);
+  if(!box) return;
+  const current = box.querySelector('.speech-text').textContent.replace(/^"|"$/g,'');
+  box.querySelector('.lbl-row').style.marginBottom = '4px';
+  box.querySelector('p.speech-text').outerHTML = `
+    <textarea class="edit-area">${current}</textarea>
+    <div class="edit-actions">
+      <button class="edit-save" onclick="saveEditBox('${key}')">💾 Salvar</button>
+      <button class="edit-cancel" onclick="cancelEditBox()">Cancelar</button>
+    </div>`;
+  box.querySelector('.edit-area').focus();
+}
+
+function saveEditBox(key){
+  const box = document.querySelector(`.speech-box[data-key="${CSS.escape(key)}"]`);
+  if(!box) return;
+  const value = box.querySelector('.edit-area').value.trim();
+  EDITS[key] = value;
+  persistEdits();
+  if(typeof currentModalRenderer === 'function') currentModalRenderer();
+}
+
+function cancelEditBox(){
+  if(typeof currentModalRenderer === 'function') currentModalRenderer();
+}
+
+document.getElementById('resetEditsBtn').addEventListener('click', () => {
+  if(Object.keys(EDITS).length === 0){
+    alert('Nenhum texto foi editado ainda.');
+    return;
+  }
+  if(confirm('Isso vai apagar todas as edições salvas neste navegador e voltar aos textos originais do roteiro. Confirmar?')){
+    EDITS = {};
+    persistEdits();
+    if(typeof currentModalRenderer === 'function') currentModalRenderer();
+  }
+});
+
+/* ---------- RENDER ---------- */
+const stepsTimeline = document.getElementById('stepsTimeline');
+STEPS.forEach((s, i) => {
+  const el = document.createElement('button');
+  el.className = 'step-card';
+  el.innerHTML = `
+    <div class="step-rail">
+      <div class="step-num">${i+1}</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-body">
+      <div class="step-title">${s.title} <span class="arrow">→</span></div>
+      <p class="step-desc">${s.desc}</p>
+    </div>`;
+  el.addEventListener('click', () => openStepModal(i));
+  stepsTimeline.appendChild(el);
+});
+
+const situationsGrid = document.getElementById('situationsGrid');
+SITUATIONS.forEach((s, i) => {
+  const el = document.createElement('button');
+  el.className = 'grid-card';
+  el.innerHTML = `
+    <div class="ic">${s.icon}</div>
+    <h4>${s.title}</h4>
+    <p class="hint">${s.hint}</p>
+    <span class="tag ${s.tag}">${s.tagLabel}</span>`;
+  el.addEventListener('click', () => openSituationModal(i));
+  situationsGrid.appendChild(el);
+});
+
+const momentsGrid = document.getElementById('momentsGrid');
+MOMENTS.forEach((m, i) => {
+  const el = document.createElement('button');
+  el.className = 'moment-card';
+  el.innerHTML = `
+    <span class="moment-badge">${m.badge}</span>
+    <h4>${m.title}</h4>
+    <p>${m.desc}</p>`;
+  el.addEventListener('click', () => openMomentModal(i));
+  momentsGrid.appendChild(el);
+});
+
+const neverList = document.getElementById('neverList');
+NEVER.forEach((n, i) => {
+  const el = document.createElement('button');
+  el.className = 'never-item';
+  el.innerHTML = `<span class="x">✕</span><p>${n.text}</p><span class="arrow">→</span>`;
+  el.addEventListener('click', () => openNeverModal(i));
+  neverList.appendChild(el);
+});
+
+const clItems = document.getElementById('clItems');
+const clState = new Array(CHECKLIST.length).fill(false);
+function checklistSpeechBoxHTML(key, fallbackText){
+  const text = getText(key, fallbackText);
+  return `
+    <div class="speech-box cl-speech-box" data-key="${key}">
+      <div class="lbl-row">
+        <div class="lbl">💬 O que dizer${isEdited(key) ? '<span class="edited-flag">editado</span>' : ''}</div>
+        <button class="edit-btn" onclick="startChecklistEdit('${key}')">✏️ Editar</button>
+      </div>
+      <p class="speech-text">"${text}"</p>
+    </div>`;
+}
+
+function startChecklistEdit(key){
+  const box = document.querySelector(`.cl-speech-box[data-key="${CSS.escape(key)}"]`);
+  if(!box) return;
+  const current = box.querySelector('.speech-text').textContent.replace(/^"|"$/g,'');
+  box.querySelector('p.speech-text').outerHTML = `
+    <textarea class="edit-area">${current}</textarea>
+    <div class="edit-actions">
+      <button class="edit-save" onclick="saveChecklistEdit('${key}')">💾 Salvar</button>
+      <button class="edit-cancel" onclick="renderChecklistItems()">Cancelar</button>
+    </div>`;
+  box.querySelector('.edit-area').focus();
+}
+
+function saveChecklistEdit(key){
+  const box = document.querySelector(`.cl-speech-box[data-key="${CSS.escape(key)}"]`);
+  if(!box) return;
+  const value = box.querySelector('.edit-area').value.trim();
+  EDITS[key] = value;
+  persistEdits();
+  renderChecklistItems();
+}
+
+function renderChecklistItems(){
+  clItems.innerHTML = '';
+  CHECKLIST.forEach((c, i) => {
+    const el = document.createElement('div');
+    el.className = 'cl-item' + (clState[i] ? ' checked' : '');
+    const speechKey = `checklist-${i}-speech`;
+    el.innerHTML = `
+      <div class="cl-box"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#07240f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cl-main">
+        <div class="cl-text"><span class="cl-num">${i+1}</span> ${c.icon} ${c.text}</div>
+        ${checklistSpeechBoxHTML(speechKey, c.speech)}
+        ${c.stepIndex !== null ? `<button class="cl-link" data-step="${c.stepIndex}">Ver etapa completa →</button>` : ''}
+      </div>`;
+    el.addEventListener('click', (e) => {
+      if(e.target.closest('.cl-link') || e.target.closest('.speech-box')) return;
+      clState[i] = !clState[i];
+      el.classList.toggle('checked', clState[i]);
+      updateChecklist();
+    });
+    const link = el.querySelector('.cl-link');
+    if(link){
+      link.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openStepModal(Number(link.dataset.step));
+      });
+    }
+    clItems.appendChild(el);
+  });
+}
+
+renderChecklistItems();
+function updateChecklist(){
+  const done = clState.filter(Boolean).length;
+  const pct = Math.round((done/CHECKLIST.length)*100);
+  document.getElementById('clFill').style.width = pct + '%';
+  document.getElementById('clCount').textContent = `${done}/${CHECKLIST.length}`;
+  document.getElementById('fabBadge').textContent = `${done}/${CHECKLIST.length}`;
+  document.getElementById('clDoneMsg').classList.toggle('show', done === CHECKLIST.length);
+}
+function resetChecklist(){
+  clState.fill(false);
+  document.querySelectorAll('#clItems .cl-item').forEach(el => el.classList.remove('checked'));
+  updateChecklist();
+}
+
+/* ---------- CHECKLIST FLUTUANTE (FAB + drawer) ---------- */
+const checklistFab = document.getElementById('checklistFab');
+const checklistDrawer = document.getElementById('checklistDrawer');
+const drawerClose = document.getElementById('drawerClose');
+const drawerReset = document.getElementById('drawerReset');
+const headerProgress = document.getElementById('headerProgress');
+
+function toggleDrawer(force){
+  const open = typeof force === 'boolean' ? force : !checklistDrawer.classList.contains('open');
+  checklistDrawer.classList.toggle('open', open);
+}
+checklistFab.addEventListener('click', () => toggleDrawer());
+drawerClose.addEventListener('click', () => toggleDrawer(false));
+drawerReset.addEventListener('click', () => {
+  resetChecklist();
+});
+headerProgress.addEventListener('click', () => toggleDrawer(true));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
+/* Propositalmente NÃO fecha ao clicar fora: assim dá pra abrir outras caixas de
+   diálogo (etapas/situações) por cima e continuar marcando o checklist depois. */
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+  });
+});
+
+/* ---------- MODAL ---------- */
+const overlay = document.getElementById('overlay');
+const modalBody = document.getElementById('modalBody');
+const modalRole = document.getElementById('modalRole');
+let modalNavHandler = null;
+
+function showModal(roleLabel){
+  modalRole.textContent = roleLabel;
+  overlay.classList.add('show');
+  document.body.classList.add('modal-open');
+}
+function closeModal(){
+  overlay.classList.remove('show');
+  document.body.classList.remove('modal-open');
+  currentModalRenderer = null;
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+function openStepModal(i){
+  currentModalRenderer = () => openStepModal(i);
+  const s = STEPS[i];
+  modalBody.innerHTML = `
+    <div class="modal-eyebrow">Etapa ${i+1} de ${STEPS.length}</div>
+    <h3 class="modal-title">${s.title}</h3>
+    ${speechBoxHTML(`step-${i}-speech`, 'O que dizer', s.speech)}
+    ${s.speech2 ? speechBoxHTML(`step-${i}-speech2`, 'Em seguida', s.speech2) : ''}
+    <div class="tip-box">
+      <div class="lbl">💡 Dica</div>
+      <p>${s.tip}</p>
+    </div>
+    <div class="modal-nav">
+      <button id="prevBtn" ${i===0?'disabled':''}>← Etapa anterior</button>
+      <button id="nextBtn" ${i===STEPS.length-1?'disabled':''}>Próxima etapa →</button>
+    </div>`;
+  document.getElementById('prevBtn').onclick = ()=> openStepModal(i-1);
+  document.getElementById('nextBtn').onclick = ()=> openStepModal(i+1);
+  showModal('Etapas da Ligação');
+}
+
+function openSituationModal(i){
+  currentModalRenderer = () => openSituationModal(i);
+  const s = SITUATIONS[i];
+  modalBody.innerHTML = `
+    <div class="modal-eyebrow">${s.icon} Situação comum</div>
+    <h3 class="modal-title">${s.title}</h3>
+    ${speechBoxHTML(`situation-${i}-speech`, 'O que dizer', s.speech)}
+    <div class="tip-box">
+      <div class="lbl">💡 Dica</div>
+      <p>${s.tip}</p>
+    </div>
+    <div class="modal-nav">
+      <button id="prevBtn" ${i===0?'disabled':''}>← Anterior</button>
+      <button id="nextBtn" ${i===SITUATIONS.length-1?'disabled':''}>Próxima →</button>
+    </div>`;
+  document.getElementById('prevBtn').onclick = ()=> openSituationModal(i-1);
+  document.getElementById('nextBtn').onclick = ()=> openSituationModal(i+1);
+  showModal('Situações Comuns');
+}
+
+function openMomentModal(i){
+  currentModalRenderer = () => openMomentModal(i);
+  const m = MOMENTS[i];
+  modalBody.innerHTML = `
+    <div class="modal-eyebrow">🗓️ ${m.badge}</div>
+    <h3 class="modal-title">${m.title}</h3>
+    <div class="speech-box">
+      <div class="lbl">📞 Como agir</div>
+      <p>${m.desc}</p>
+    </div>
+    <div class="tip-box">
+      <div class="lbl">💡 Dica</div>
+      <p>${m.tip}</p>
+    </div>
+    <div class="modal-nav">
+      <button id="prevBtn" ${i===0?'disabled':''}>← Anterior</button>
+      <button id="nextBtn" ${i===MOMENTS.length-1?'disabled':''}>Próximo →</button>
+    </div>`;
+  document.getElementById('prevBtn').onclick = ()=> openMomentModal(i-1);
+  document.getElementById('nextBtn').onclick = ()=> openMomentModal(i+1);
+  showModal('Quando Ligar');
+}
+
+function openNeverModal(i){
+  currentModalRenderer = () => openNeverModal(i);
+  const n = NEVER[i];
+  modalBody.innerHTML = `
+    <div class="modal-eyebrow">🚫 Nunca faça</div>
+    <h3 class="modal-title">${n.text}</h3>
+    <div class="warn-box">
+      <div class="lbl">⚠ Por que importa</div>
+      <p>${n.why}</p>
+    </div>
+    <div class="modal-nav">
+      <button id="prevBtn" ${i===0?'disabled':''}>← Anterior</button>
+      <button id="nextBtn" ${i===NEVER.length-1?'disabled':''}>Próximo →</button>
+    </div>`;
+  document.getElementById('prevBtn').onclick = ()=> openNeverModal(i-1);
+  document.getElementById('nextBtn').onclick = ()=> openNeverModal(i+1);
+  showModal('Nunca Faça');
+}
+</script>
+</body>
+</html>
